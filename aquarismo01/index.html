@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquarismo Para Iniciantes - O Guia Completo</title>
+    <meta name="description" content="Aprenda como montar seu primeiro aquário de água doce. Guia passo a passo sobre peixes, plantas, equipamentos e manutenção para iniciantes.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .active-link {
+            border-bottom: 2px solid #0ea5e9;
+            color: #0ea5e9;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        #content-area {
+            min-height: calc(100vh - 400px);
+        }
+
+        .loading-bar {
+            height: 3px;
+            width: 0;
+            background: #0ea5e9;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: width 0.3s ease;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div id="loading" class="loading-bar"></div>
+
+    <!-- Navegação Fixa -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-sm z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-fish text-sky-500 text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight text-slate-900">AquaIniciante</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6 text-sm font-medium">
+                    <a href="#" onclick="navigate('home')" id="link-home" class="hover:text-sky-500 transition-colors py-2">Início</a>
+                    <a href="#aquario-ideal" onclick="navigate('aquario-ideal')" id="link-aquario-ideal" class="hover:text-sky-500 transition-colors py-2">Aquário Ideal</a>
+                    <a href="#peixes" onclick="navigate('peixes')" id="link-peixes" class="hover:text-sky-500 transition-colors py-2">Peixes</a>
+                    <a href="#montagem" onclick="navigate('montagem')" id="link-montagem" class="hover:text-sky-500 transition-colors py-2">Montagem</a>
+                    <a href="#cuidados" onclick="navigate('cuidados')" id="link-cuidados" class="hover:text-sky-500 transition-colors py-2">Manutenção</a>
+                    <a href="#plantas" onclick="navigate('plantas')" id="link-plantas" class="hover:text-sky-500 transition-colors py-2">Plantas</a>
+                    <a href="#blog" onclick="navigate('blog')" id="link-blog" class="hover:text-sky-500 transition-colors py-2">Blog</a>
+                    <a href="#contato" onclick="navigate('contato')" id="link-contato" class="hover:text-sky-500 transition-colors py-2">Contato</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 text-slate-600 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2 text-center">
+            <a href="#" onclick="navigate('home')" class="block py-2 text-slate-700">Início</a>
+            <a href="#aquario-ideal" onclick="navigate('aquario-ideal')" class="block py-2 text-slate-700">Aquário Ideal</a>
+            <a href="#peixes" onclick="navigate('peixes')" class="block py-2 text-slate-700">Peixes</a>
+            <a href="#montagem" onclick="navigate('montagem')" class="block py-2 text-slate-700">Montagem</a>
+            <a href="#blog" onclick="navigate('blog')" class="block py-2 text-slate-700">Blog</a>
+            <a href="#contato" onclick="navigate('contato')" class="block py-2 text-slate-700">Contato</a>
+        </div>
+    </nav>
+
+    <!-- Área de Conteúdo Dinâmico -->
+    <main id="content-area" class="mt-16">
+        <!-- O conteúdo será injetado aqui via JS -->
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-slate-900 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 text-white mb-4">
+                        <i class="fas fa-fish text-sky-500 text-2xl"></i>
+                        <span class="font-bold text-xl">AquaIniciante</span>
+                    </div>
+                    <p class="max-w-sm">Dedicado a ajudar novos entusiastas a mergulhar no mundo do aquarismo de forma consciente e saudável para os peixes.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" onclick="navigate('home')" class="hover:text-sky-400">Página Inicial</a></li>
+                        <li><a href="#" onclick="navigate('peixes')" class="hover:text-sky-400">Guia de Peixes</a></li>
+                        <li><a href="#" onclick="navigate('montagem')" class="hover:text-sky-400">Passo a Passo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Redes Sociais</h4>
+                    <div class="flex space-x-4 text-xl">
+                        <a href="#" class="hover:text-sky-400"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-sky-400"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="hover:text-sky-400"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-center text-xs">
+                &copy; 2024 Aquarismo Para Iniciantes. Todos os direitos reservados. 
+                <p class="mt-2">Otimizado para SEO - Como montar aquário para iniciantes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Templates de Conteúdo (Escondidos) -->
+    <template id="template-home">
+        <section class="hero-gradient h-[500px] flex items-center justify-center text-center text-white px-4">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Bem-vindo ao Aquarismo para Iniciantes</h1>
+                <p class="text-lg md:text-xl text-slate-200 mb-8">Transforme sua casa com a beleza e tranquilidade de um aquário de água doce simples e bem cuidado.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="navigate('montagem')" class="bg-sky-500 hover:bg-sky-600 px-8 py-3 rounded-full font-bold transition-all shadow-lg">Começar Agora</button>
+                    <button onclick="navigate('peixes')" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 px-8 py-3 rounded-full font-bold transition-all">Ver Peixes</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Por que ter um aquário em casa?</h2>
+                <div class="w-20 h-1 bg-sky-500 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center card-hover">
+                    <div class="w-16 h-16 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Redução de Stress</h3>
+                    <p class="text-slate-600">Observar o movimento calmo dos peixes reduz a pressão arterial e traz paz mental após um dia longo.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center card-hover">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Educação e Natureza</h3>
+                    <p class="text-slate-600">Uma forma incrível de ensinar biologia e responsabilidade para crianças, criando um ecossistema real.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center card-hover">
+                    <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Decoração Viva</h3>
+                    <p class="text-slate-600">Um aquário bem planejado é uma peça central de design que ilumina e dá vida a qualquer ambiente.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-sky-50 py-16">
+            <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Pronto para dar o primeiro passo?</h2>
+                    <p class="text-lg text-slate-600 mb-6 leading-relaxed">O aquarismo para iniciantes não precisa ser complicado. Com o conhecimento certo, você evita erros comuns e cria um ambiente saudável onde seus peixes podem prosperar por anos.</p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-sky-500"></i> Guias Práticos</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-sky-500"></i> Dicas de Manutenção</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-sky-500"></i> Sugestões de Peixes e Plantas</li>
+                    </ul>
+                    <button onclick="navigate('aquario-ideal')" class="text-sky-600 font-bold flex items-center gap-2 hover:gap-4 transition-all">
+                        Descubra o aquário ideal <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="rounded-3xl overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1544476915-ed1370594142?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Aquário Plantado" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="template-aquario-ideal">
+        <section class="max-w-4xl mx-auto px-4 py-12">
+            <nav class="text-sm text-slate-500 mb-4">Início > Qual o Melhor Aquário Para Iniciantes?</nav>
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-6">Qual o Melhor Aquário Para Iniciantes?</h1>
+            
+            <div class="prose prose-slate max-w-none">
+                <p class="text-lg text-slate-600 mb-8">Uma das maiores dúvidas no <strong>aquarismo para iniciantes</strong> é o tamanho do tanque. Ao contrário do que muitos pensam, aquários maiores são mais fáceis de cuidar!</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">1. Tamanhos Recomendados</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl border-l-4 border-sky-500 shadow-sm">
+                        <h3 class="font-bold text-lg mb-2">Aquários Pequenos (20-40L)</h3>
+                        <p class="text-sm">Indicados para quem tem pouco espaço. Exigem trocas de água mais frequentes pois os parâmetros químicos mudam rápido.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border-l-4 border-green-500 shadow-sm">
+                        <h3 class="font-bold text-lg mb-2">Aquários Médios (50-100L)</h3>
+                        <p class="text-sm"><strong>O ideal para iniciantes!</strong> Grande o suficiente para ser estável quimicamente e pequeno o suficiente para não pesar no bolso.</p>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-bold mt-8 mb-4">2. Aquário Pequeno vs Grande</h2>
+                <p class="mb-4">No aquarismo, <strong>volume é estabilidade</strong>. Em um copo d'água, uma gota de suco muda a cor. Em um balde, a mesma gota nem é notada. O mesmo vale para a sujeira dos peixes (amônia).</p>
+
+                <h2 class="text-2xl font-bold mt-8 mb-4">3. Dicas para Apartamentos</h2>
+                <ul class="list-disc pl-6 space-y-2 mb-8">
+                    <li>Verifique a resistência do móvel. 1 litro de água = 1kg (fora o vidro e as pedras).</li>
+                    <li>Prefira locais longe da luz solar direta para evitar algas.</li>
+                    <li>Escolha equipamentos silenciosos (bombas de boa qualidade).</li>
+                </ul>
+
+                <div class="bg-red-50 border border-red-100 p-8 rounded-2xl">
+                    <h2 class="text-2xl font-bold text-red-900 mb-4 flex items-center gap-2">
+                        <i class="fas fa-exclamation-triangle"></i> Erros Comuns na Escolha
+                    </h2>
+                    <ul class="space-y-3 text-red-800">
+                        <li class="flex items-start gap-2"><strong>1. O Bocal Redondo:</strong> Os "aquários de bola" distorcem a visão do peixe e têm pouca área de troca de oxigênio.</li>
+                        <li class="flex items-start gap-2"><strong>2. Superpopulação:</strong> Comprar um aquário de 10L e querer colocar 20 peixes.</li>
+                        <li class="flex items-start gap-2"><strong>3. Ignorar o Móvel:</strong> Colocar um aquário pesado sobre uma prateleira frágil.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="template-peixes">
+        <section class="max-w-6xl mx-auto px-4 py-12">
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-4 text-center">Melhores Peixes Para Aquário de Iniciantes</h1>
+            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">Escolher espécies resistentes é o segredo para não desanimar no começo. Aqui estão os peixes que perdoam pequenos erros de iniciantes.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Peixe 1 -->
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100">
+                    <div class="h-48 bg-sky-200">
+                        <img src="https://images.unsplash.com/photo-1614032126279-7a38b1d42875?auto=format&fit=crop&w=500&q=80" alt="Peixe Guppy" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Guppy (Lebiste)</h3>
+                        <p class="text-sm text-slate-600 mb-4">Coloridos, ativos e muito fáceis de reproduzir. Adaptam-se a vários tipos de água.</p>
+                        <span class="bg-sky-100 text-sky-700 text-xs px-3 py-1 rounded-full font-bold">Muito Resistente</span>
+                    </div>
+                </div>
+                <!-- Peixe 2 -->
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100">
+                    <div class="h-48 bg-sky-200">
+                        <img src="https://images.unsplash.com/photo-1535591273668-578e31182c4f?auto=format&fit=crop&w=500&q=80" alt="Peixe Neon" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Tetra Neon</h3>
+                        <p class="text-sm text-slate-600 mb-4">Pequenos peixes de cardume que brilham sob a luz. Precisam viver em grupos de 6 ou mais.</p>
+                        <span class="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full font-bold">Cardume</span>
+                    </div>
+                </div>
+                <!-- Peixe 3 -->
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100">
+                    <div class="h-48 bg-sky-200">
+                        <img src="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?auto=format&fit=crop&w=500&q=80" alt="Peixe Betta" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Betta Splendens</h3>
+                        <p class="text-sm text-slate-600 mb-4">O clássico para pequenos espaços. Atenção: machos nunca podem ficar juntos no mesmo aquário.</p>
+                        <span class="bg-red-100 text-red-700 text-xs px-3 py-1 rounded-full font-bold">Solitário</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 text-white p-10 rounded-3xl">
+                <h2 class="text-2xl font-bold mb-6">Regras de Ouro da População</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div>
+                        <h3 class="text-sky-400 font-bold mb-3 italic">Quantos peixes posso ter?</h3>
+                        <p class="text-slate-300">A regra clássica é <strong>1cm de peixe adulto para cada 2 litros de água</strong>. Se o seu peixe cresce até 5cm e você tem 40 litros, o ideal são no máximo 4 peixes desse tipo.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-red-400 font-bold mb-3 italic">Quem não misturar?</h3>
+                        <p class="text-slate-300">Nunca misture peixes de água fria (como o Peixe Dourado/Kinguio) com peixes tropicais. Além disso, evite peixes agressivos com peixes de nadadeiras longas e lentos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="template-montagem">
+        <section class="max-w-4xl mx-auto px-4 py-12">
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-8">Como Montar Seu Primeiro Aquário</h1>
+            
+            <div class="space-y-8">
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-sky-500 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">1</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Equipamentos Essenciais</h3>
+                        <p class="text-slate-600 mb-4">Antes de comprar os peixes, você precisa do suporte de vida deles:</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 bg-white rounded-lg border border-slate-200">
+                                <strong>Filtro:</strong> O coração do aquário. Deve filtrar 5x o volume do tanque por hora.
+                            </div>
+                            <div class="p-4 bg-white rounded-lg border border-slate-200">
+                                <strong>Termostato:</strong> Mantém a temperatura estável (fundamental para peixes tropicais).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-sky-500 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">2</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Substrato e Decoração</h3>
+                        <p class="text-slate-600 mb-4">Lave bem o cascalho ou areia. Adicione pedras e troncos naturais (evite decorações plásticas com pontas que podem ferir os peixes).</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-sky-500 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md">3</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Enchimento e Ciclagem</h3>
+                        <p class="text-slate-600 mb-4">Encha com água e use um condicionador para remover o cloro. <strong>Atenção:</strong> Você não pode colocar peixes no mesmo dia! O aquário precisa de 30 dias para criar bactérias boas (Ciclagem).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 p-8 bg-sky-600 rounded-3xl text-white shadow-xl">
+                <h3 class="text-2xl font-bold mb-6">Checklist Completo</h3>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <li class="flex items-center gap-2"><i class="fas fa-square-check"></i> Aquário de vidro colado</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-square-check"></i> Filtro Hang-on ou Canister</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-square-check"></i> Termostato com regulagem</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-square-check"></i> Luminária LED</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-square-check"></i> Condicionador de água (Anticloro)</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-square-check"></i> Testes de pH e Amônia</li>
+                </ul>
+            </div>
+        </section>
+    </template>
+
+    <template id="template-cuidados">
+        <section class="max-w-4xl mx-auto px-4 py-12">
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-8 text-center">Cuidados Básicos e Manutenção</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <h3 class="text-xl font-bold mb-4 text-sky-600">Troca Parcial de Água (TPA)</h3>
+                    <p class="text-slate-600 mb-4">Você nunca deve trocar toda a água do aquário. Isso mata as bactérias boas.</p>
+                    <p class="font-bold">Frequência: 20% do volume uma vez por semana.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <h3 class="text-xl font-bold mb-4 text-sky-600">Parâmetros Químicos</h3>
+                    <ul class="text-sm space-y-2 text-slate-600">
+                        <li><strong>pH:</strong> Indica se a água está ácida ou alcalina.</li>
+                        <li><strong>Amônia e Nitrito:</strong> Devem estar sempre em ZERO. São tóxicos.</li>
+                        <li><strong>Temperatura:</strong> Estável entre 24°C e 27°C para tropicais.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="prose prose-slate max-w-none bg-white p-8 rounded-2xl shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Limpeza Correta</h2>
+                <p>Use um sifão para aspirar a sujeira do fundo enquanto retira a água da TPA. Limpe os vidros apenas com esponjas novas (nunca use sabão ou produtos químicos!).</p>
+                <p>O filtro deve ser limpo apenas com a água que você retirou do aquário, para não matar a biologia interna com o cloro da torneira.</p>
+            </div>
+        </section>
+    </template>
+
+    <template id="template-plantas">
+        <section class="max-w-4xl mx-auto px-4 py-12">
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-8">Plantas Naturais: O Pulmão do Aquário</h1>
+            <p class="text-lg text-slate-600 mb-8">Ter plantas não é apenas estético. Elas consomem nitratos, combatem algas e fornecem esconderijos naturais para os peixes iniciantes.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <div class="flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                    <div class="w-20 h-20 bg-green-100 rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1516550135131-fe3dcb0bedc7?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Anubias</h4>
+                        <p class="text-xs text-slate-500">Resistentes, crescem em qualquer luz. Não enterre a raiz!</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                    <div class="w-20 h-20 bg-green-100 rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1614032126279-7a38b1d42875?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Elodea</h4>
+                        <p class="text-xs text-slate-500">Cresce muito rápido e ajuda a oxigenar a água.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-green-50 p-8 rounded-3xl border border-green-100">
+                <h3 class="text-2xl font-bold text-green-900 mb-4">Dicas de Cultivo</h3>
+                <ul class="space-y-4 text-green-800">
+                    <li class="flex gap-3"><i class="fas fa-sun"></i> <strong>Iluminação:</strong> Pelo menos 6 a 8 horas de luz por dia.</li>
+                    <li class="flex gap-3"><i class="fas fa-cut"></i> <strong>Poda:</strong> Corte as pontas das plantas altas para elas crescerem mais cheias.</li>
+                    <li class="flex gap-3"><i class="fas fa-leaf"></i> <strong>Nutrição:</strong> Para iniciantes, plantas que retiram nutrientes da água são as melhores.</li>
+                </ul>
+            </div>
+        </section>
+    </template>
+
+    <template id="template-blog">
+        <section class="max-w-7xl mx-auto px-4 py-12">
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-12 text-center">Blog do Aquarismo</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Artigo 1 -->
+                <article class="bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 flex flex-col">
+                    <div class="h-48 bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1544476915-ed1370594142?auto=format&fit=crop&w=500&q=80" alt="Água verde" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold mb-3">Como evitar água verde no aquário</h3>
+                        <p class="text-slate-600 text-sm mb-4">Descubra as causas do boom de algas unicelulares e como recuperar o cristalino da sua água...</p>
+                        <a href="#" class="text-sky-600 font-bold text-sm">Ler mais →</a>
+                    </div>
+                </article>
+
+                <!-- Artigo 2 -->
+                <article class="bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 flex flex-col">
+                    <div class="h-48 bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=500&q=80" alt="Peixes morrendo" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold mb-3">Por que meus peixes estão morrendo?</h3>
+                        <p class="text-slate-600 text-sm mb-4">Analisamos os 5 motivos principais, desde picos de amônia até o choque térmico...</p>
+                        <a href="#" class="text-sky-600 font-bold text-sm">Ler mais →</a>
+                    </div>
+                </article>
+
+                <!-- Artigo 3 -->
+                <article class="bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 flex flex-col">
+                    <div class="h-48 bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1509101071124-0571b2fd4d16?auto=format&fit=crop&w=500&q=80" alt="Ciclagem" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold mb-3">Ciclagem do aquário explicada</h3>
+                        <p class="text-slate-600 text-sm mb-4">O ciclo do nitrogênio é o conceito mais importante para qualquer aquarista...</p>
+                        <a href="#" class="text-sky-600 font-bold text-sm">Ler mais →</a>
+                    </div>
+                </article>
+
+                <!-- Artigo 4 -->
+                <article class="bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 flex flex-col">
+                    <div class="h-48 bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?auto=format&fit=crop&w=500&q=80" alt="Aquário sem filtro" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold mb-3">Aquário sem filtro funciona?</h3>
+                        <p class="text-slate-600 text-sm mb-4">Entenda os riscos e as condições extremas necessárias para manter um sistema sem filtragem mecânica...</p>
+                        <a href="#" class="text-sky-600 font-bold text-sm">Ler mais →</a>
+                    </div>
+                </article>
+
+                <!-- Artigo 5 -->
+                <article class="bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 flex flex-col">
+                    <div class="h-48 bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1459156212016-c812468e2115?auto=format&fit=crop&w=500&q=80" alt="Ração peixes" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold mb-3">Melhor ração para peixes tropicais</h3>
+                        <p class="text-slate-600 text-sm mb-4">Flocos, grânulos ou viva? Saiba qual a dieta ideal para cores vibrantes e saúde...</p>
+                        <a href="#" class="text-sky-600 font-bold text-sm">Ler mais →</a>
+                    </div>
+                </article>
+
+                <!-- Artigo 6 -->
+                <article class="bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 flex flex-col">
+                    <div class="h-48 bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1544476915-ed1370594142?auto=format&fit=crop&w=500&q=80" alt="Erros iniciantes" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold mb-3">Erros comuns de iniciantes</h3>
+                        <p class="text-slate-600 text-sm mb-4">Evite as armadilhas que fazem 80% dos novos aquaristas desistirem no primeiro mês...</p>
+                        <a href="#" class="text-sky-600 font-bold text-sm">Ler mais →</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </template>
+
+    <template id="template-contato">
+        <section class="max-w-4xl mx-auto px-4 py-12">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+                <div class="bg-sky-600 p-12 text-white flex flex-col justify-center">
+                    <h1 class="text-3xl font-bold mb-6">Fale Conosco</h1>
+                    <p class="mb-8 text-sky-100">Tem alguma dúvida sobre seu primeiro aquário? Nossa equipe de aquaristas experientes está pronta para ajudar!</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-envelope text-sky-300"></i>
+                            <span>contato@aquainiciante.com.br</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <i class="fab fa-instagram text-sky-300"></i>
+                            <span>@aquainiciante</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-12">
+                    <form onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso! (Simulação)')" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Nome Completo</label>
+                            <input type="text" required class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">E-mail</label>
+                            <input type="email" required class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Mensagem</label>
+                            <textarea rows="4" required class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-sky-600 text-white font-bold py-3 rounded-lg hover:bg-sky-700 transition-colors shadow-lg">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <script>
+        /**
+         * Sistema de Navegação SPA (Single Page Application)
+         * Simula a mudança de páginas para SEO e Experiência do Usuário
+         */
+        const routes = {
+            'home': 'template-home',
+            'aquario-ideal': 'template-aquario-ideal',
+            'peixes': 'template-peixes',
+            'montagem': 'template-montagem',
+            'cuidados': 'template-cuidados',
+            'plantas': 'template-plantas',
+            'blog': 'template-blog',
+            'contato': 'template-contato'
+        };
+
+        function navigate(route) {
+            const loading = document.getElementById('loading');
+            loading.style.width = '30%';
+            
+            setTimeout(() => {
+                loading.style.width = '100%';
+                
+                // Limpa links ativos
+                document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-link'));
+                
+                // Seta link ativo
+                const activeLink = document.getElementById(`link-${route}`);
+                if (activeLink) activeLink.classList.add('active-link');
+
+                // Injeta o conteúdo
+                const templateId = routes[route] || 'template-home';
+                const template = document.getElementById(templateId);
+                const contentArea = document.getElementById('content-area');
+                
+                contentArea.innerHTML = template.innerHTML;
+                
+                // Scroll para o topo
+                window.scrollTo(0, 0);
+
+                // Fecha menu mobile se aberto
+                document.getElementById('mobile-menu').classList.add('hidden');
+
+                setTimeout(() => {
+                    loading.style.width = '0';
+                }, 200);
+            }, 300);
+        }
+
+        // Toggle Menu Mobile
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Inicialização
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.replace('#', '') || 'home';
+            navigate(hash);
+        });
+
+        // Escuta mudanças de hash no navegador
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#', '') || 'home';
+            navigate(hash);
+        });
+    </script>
+</body>
+</html>
